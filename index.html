@@ -42,7 +42,7 @@
         margin-top: 20px;
         border-radius: 10px;
         box-shadow: 0 0 15px #ff4d4d;
-    }
+        }
     
     /* Animación para que el título brille y crezca un poco */
     @keyframes pulse {
@@ -83,12 +83,12 @@
 
   .gallery {
       display: grid;
-     /* Cambiamos a 4 columnas de igual tamaño */
-     grid-template-columns: repeat(4, 1fr); 
-     gap: 10px; /* Un espacio más pequeño entre videos */
-     width: 400%;
-     max-width: 1100px; /* Estrechamos un poco la galería */
-     margin: 40px auto;
+    /* Cambiamos a 4 columnas de igual tamaño */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 10px; /* Un espacio más pequeño entre videos */
+    width: 400%;
+    max-width: 1100px; /* Estrechamos un poco la galería */
+    margin: 40px auto;
   }
 
   .video-container video {
@@ -99,37 +99,37 @@
   /* Efecto de Brillo y Escala al pasar el mouse (Hover) */
  .video-container {
     transition: all 0.4s ease-in-out; /* Animación suave */
- }
+   }
 
- .video-container:hover {
+  .video-container:hover {
     transform: translateY(-10px) scale(1.03); /* Sube y crece un poco */
     box-shadow: 0 0 30px rgba(255, 77, 77, 0.6), 
                 0 0 60px rgba(255, 77, 77, 0.4); /* Resplandor rojo intenso */
     border-color: #ff4d4d; /* El borde también brilla */
- }
+  }
   /* Para que las descripciones se vean profesionales */
- .video-info {
+  .video-info {
     padding: 15px;
     text-align: center; /* ESTO CENTRA TODO: Título y Párrafo */
     display: flex;
     flex-direction: column;
     align-items: center; /* Asegura el centrado en navegadores modernos */
- }
+  }
 
- .video-info h3 {
+  .video-info h3 {
     font-size: 1.1rem;
     color: #ff4d4d;
     margin: 0 0 5px 0;
     text-transform: uppercase;
     width: 100%; /* Para que el centrado sea relativo a la caja */
- }
+  }
 
- .video-info p {
+  .video-info p {
     font-size: 0.85rem;
     color: #bbb;
     margin: 0;
     line-height: 1.4;
- }
+  }
   /* Estilo del Botón de WhatsApp */
  .whatsapp-btn {
     position: fixed;
@@ -149,15 +149,15 @@
     
     /* Animación de Resplandor Neón constante */
     animation: neonPulse 2s infinite;
- }
+  }
 
- .whatsapp-btn img {
+  .whatsapp-btn img {
     width: 25px;
     height: 25px;
- }
+  }
 
- /* Animación del pulso de brillo */
- @keyframes neonPulse {
+  /* Animación del pulso de brillo */
+  @keyframes neonPulse {
     0% {
         box-shadow: 0 0 10px #25d366, 0 0 20px #25d366;
     }
@@ -169,7 +169,7 @@
     }
     .video-info {
     padding: 10px;
-    text-align:left;/* Alineado a la izquierda para un look más limpio */
+    text-align: left; /* Alineado a la izquierda para un look más limpio */
     }
 
     .video-info h3 {
@@ -184,46 +184,76 @@
     margin: 0;
     line-height: 1.4;
     }
-    /* --- ESTO ARREGLA EL CELULAR --- */
- @media (max-width: 600px) {
+
+    .tarjeta img {
+    width: 100%;       /* Obliga a la imagen a ocupar todo el ancho de la tarjeta */
+    height: 350px;     /* Tú decides la altura (puedes subirla o bajarla) */
+    object-fit: contain; /* 👈 ¡ESTA ES LA CLAVE! Muestra la imagen completa sin recortar nada */
+    background-color: #111; /* Un fondo oscuro por si la imagen es vertical */
+    display: block;
+ }
+    .tarjeta {
+    transition: all 0.4s ease;
+    cursor: pointer;
+ }
+
+   .tarjeta:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); /* Brillo rojo anime */
+    transform: translateY(-10px);
+    border-color: #ff0000;
+  }
+
+    /* --- AJUSTES PARA CELULARES (Móviles) --- */
+   @media (max-width: 600px) {
+    
+    /* 1. Centrar el título y ajustar tamaño */
     h1 {
         font-size: 1.8rem !important;
         text-align: center !important;
+        padding: 0 10px;
     }
 
-    /* Esto evita que la página se mueva hacia la derecha */
     body {
-        overflow-x: hidden;
-    }
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Esto prohíbe el movimiento a la derecha */
+    width: 100%;
+   }
 
-    /* Alinea los videos uno debajo de otro */
+    /* 2. Forzar que los videos se apilen uno debajo de otro */
     .contenedor-videos {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 0;
+    flex-wrap: wrap; /* Permite que los videos bajen si no caben */
+    justify-content: center; /* Centra todo */
+    align-items: center;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0 auto;
     }
 
-    /* Ajusta el tamaño de los videos para que encajen en la pantalla */
+    /* 3. Ajustar el tamaño del video para que no se salga */
     .video-card {
-        width: 90% !important;
-        margin: 10px 0;
+        width: 95% !important; /* Que ocupe casi todo el ancho del celular */
+        margin-bottom: 20px;
     }
 
     video {
         width: 100% !important;
         height: auto !important;
+        border-radius: 10px;
     }
 
-    /* Centra el botón de compra */
+    /* 4. Botón de WhatsApp siempre visible y centrado */
     .btn-whatsapp {
-        width: 80% !important;
-        margin: 20px auto !important;
+        width: 90%;
+        font-size: 1rem;
+        margin: 20px auto;
         display: block;
         text-align: center;
     }
  }
+
 
 </style>
 
